@@ -18,7 +18,7 @@ extension UIView{
         return tapRecognizer.tapPromise
     }
     
-    public func nc_whenTapped(_ handler:ncTapGestrueHandler){
+    public func nc_whenTapped(_ handler:@escaping ncTapGestrueHandler){
         let tapRecognizer=NCTapGestureRecognizer(handler: handler)
         addGestureRecognizer(tapRecognizer)
     }
@@ -79,10 +79,10 @@ extension UIView{
         return nc_addSwipeGestureWithConfigClosure({ _ in })
     }
     
-    public func nc_whenSwipedInDirection(_ direction:UISwipeGestureRecognizerDirection,gestureRecognizer:ncSwipeHandler){
+    public func nc_whenSwipedInDirection(_ direction:UISwipeGestureRecognizerDirection,gestureRecognizer:@escaping ncSwipeHandler){
         nc_addSwipeGestureWithConfigClosure { (swipeGestureRecognizer) in
             swipeGestureRecognizer.direction=direction
-        }.whenEnded(gestureRecognizer)
+            }.whenEnded(gestureRecognizer)
     }
     
     // MARK:ScreenEdgePan

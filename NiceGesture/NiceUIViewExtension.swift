@@ -12,19 +12,19 @@ import Foundation
 extension UIView{
     
     // MARK:Tap
-    public func nc_addTapGestureWithConfigClosure(@noescape config:ncTapGestrueHandler)->NCTapPromise{
+    public func nc_addTapGestureWithConfigClosure(_ config:ncTapGestrueHandler)->NCTapPromise{
         let tapRecognizer=NCTapGestureRecognizer(config: config)
         addGestureRecognizer(tapRecognizer)
         return tapRecognizer.tapPromise
     }
     
-    public func nc_whenTapped(handler:ncTapGestrueHandler){
+    public func nc_whenTapped(_ handler:ncTapGestrueHandler){
         let tapRecognizer=NCTapGestureRecognizer(handler: handler)
         addGestureRecognizer(tapRecognizer)
     }
     
     // MARK:LongPress
-    public func nc_addLongPressGestureWithConfigClosure(@noescape config:ncLongPressHandler)->NCGesturePromise<UILongPressGestureRecognizer>{
+    public func nc_addLongPressGestureWithConfigClosure(_ config:ncLongPressHandler)->NCGesturePromise<UILongPressGestureRecognizer>{
         let recognizer = NCLongPressGestureRecognizer(config: config)
         addGestureRecognizer(recognizer)
         return recognizer.promise
@@ -36,7 +36,7 @@ extension UIView{
     
     
     // MARK:Pan
-    public func nc_addPanGestureWithConfigClosure(@noescape config:ncPanHandler)->NCGesturePromise<UIPanGestureRecognizer>{
+    public func nc_addPanGestureWithConfigClosure(_ config:ncPanHandler)->NCGesturePromise<UIPanGestureRecognizer>{
         let recognizer = NCPanGestureRecognizer(config: config)
         addGestureRecognizer(recognizer)
         return recognizer.promise
@@ -47,7 +47,7 @@ extension UIView{
     }
     
     // MARK:Pinch
-    public func nc_addPinchGestureWithConfigClosure(@noescape config:ncPinchHandler)->NCGesturePromise<UIPinchGestureRecognizer>{
+    public func nc_addPinchGestureWithConfigClosure(_ config:ncPinchHandler)->NCGesturePromise<UIPinchGestureRecognizer>{
         let recognizer = NCPinchGestureRecognizer(config: config)
         addGestureRecognizer(recognizer)
         return recognizer.promise
@@ -58,7 +58,7 @@ extension UIView{
     }
     
     // MARK:Rotation
-    public func nc_addRotationGestureWithConfigClosure(@noescape config:ncRotationHandler)->NCGesturePromise<UIRotationGestureRecognizer>{
+    public func nc_addRotationGestureWithConfigClosure(_ config:ncRotationHandler)->NCGesturePromise<UIRotationGestureRecognizer>{
         let recognizer = NCRotationGestureRecognizer(config: config)
         addGestureRecognizer(recognizer)
         return recognizer.promise
@@ -69,7 +69,7 @@ extension UIView{
     }
     
     // MARK:Swipe
-    public func nc_addSwipeGestureWithConfigClosure(@noescape config:ncSwipeHandler)->NCGesturePromise<UISwipeGestureRecognizer>{
+    public func nc_addSwipeGestureWithConfigClosure(_ config:ncSwipeHandler)->NCGesturePromise<UISwipeGestureRecognizer>{
         let recognizer = NCSwipeGestureRecognizer(config: config)
         addGestureRecognizer(recognizer)
         return recognizer.promise
@@ -79,14 +79,14 @@ extension UIView{
         return nc_addSwipeGestureWithConfigClosure({ _ in })
     }
     
-    public func nc_whenSwipedInDirection(direction:UISwipeGestureRecognizerDirection,gestureRecognizer:ncSwipeHandler){
+    public func nc_whenSwipedInDirection(_ direction:UISwipeGestureRecognizerDirection,gestureRecognizer:ncSwipeHandler){
         nc_addSwipeGestureWithConfigClosure { (swipeGestureRecognizer) in
             swipeGestureRecognizer.direction=direction
         }.whenEnded(gestureRecognizer)
     }
     
     // MARK:ScreenEdgePan
-    public func nc_addScreenEdgePanGestureWithConfigClosure(@noescape config:ncEdgePanchHandler)->NCGesturePromise<UIScreenEdgePanGestureRecognizer>{
+    public func nc_addScreenEdgePanGestureWithConfigClosure(_ config:ncEdgePanchHandler)->NCGesturePromise<UIScreenEdgePanGestureRecognizer>{
         let recognizer = NCScreenEdgePanGestureRecognizer(config: config)
         addGestureRecognizer(recognizer)
         return recognizer.promise

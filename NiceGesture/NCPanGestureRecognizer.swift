@@ -8,14 +8,14 @@
 
 import UIKit
 
-public typealias ncPanHandler=(gestureRecognizer:UIPanGestureRecognizer)->()
+public typealias ncPanHandler=(_ gestureRecognizer:UIPanGestureRecognizer)->()
 
-public class NCPanGestureRecognizer: UIPanGestureRecognizer {
+open class NCPanGestureRecognizer: UIPanGestureRecognizer {
     var promise = NCGesturePromise<UIPanGestureRecognizer>()
     
-    init(@noescape config:ncPanHandler={ _ in }){
+    init(config:ncPanHandler={ _ in }){
         super.init(target: promise, action: #selector(NCGesturePromise.gesureRecognizerHandler(_:)))
-        config(gestureRecognizer: self)
+        config(self)
     }
     
 }

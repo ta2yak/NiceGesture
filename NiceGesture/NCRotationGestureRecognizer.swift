@@ -8,13 +8,13 @@
 
 import UIKit
 
-public typealias ncRotationHandler=(gestureRecognizer:UIRotationGestureRecognizer)->()
+public typealias ncRotationHandler=(_ gestureRecognizer:UIRotationGestureRecognizer)->()
 
 class NCRotationGestureRecognizer: UIRotationGestureRecognizer {
     var promise = NCGesturePromise<UIRotationGestureRecognizer>()
     
-    init(@noescape config:ncRotationHandler={ _ in }){
+    init(config:ncRotationHandler={ _ in }){
         super.init(target: promise, action: #selector(NCGesturePromise.gesureRecognizerHandler(_:)))
-        config(gestureRecognizer: self)
+        config(self)
     }
 }

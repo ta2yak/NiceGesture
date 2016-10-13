@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class NCTapPromise: NSObject {
+open class NCTapPromise: NSObject {
     
     var tapHandler:ncTapGestrueHandler?
     
@@ -16,18 +16,18 @@ public class NCTapPromise: NSObject {
         super.init()
     }
     
-    init(tapHandler:ncTapGestrueHandler){
+    init(tapHandler:@escaping ncTapGestrueHandler){
         self.tapHandler=tapHandler
         super.init()
     }
     
-    func tapGestureRecognizerHandler(recognizer:UITapGestureRecognizer){
+    func tapGestureRecognizerHandler(_ recognizer:UITapGestureRecognizer){
         if let handler = tapHandler {
-            handler(tapGestureRecognizer: recognizer)
+            handler(recognizer)
         }
     }
     
-    public func whenTapped(handler:ncTapGestrueHandler){
+    open func whenTapped(_ handler:@escaping ncTapGestrueHandler){
         tapHandler=handler
     }
     

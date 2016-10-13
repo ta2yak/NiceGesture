@@ -8,14 +8,14 @@
 
 import UIKit
 
-public typealias ncEdgePanchHandler=(gestureRecognizer:UIScreenEdgePanGestureRecognizer)->()
+public typealias ncEdgePanchHandler=(_ gestureRecognizer:UIScreenEdgePanGestureRecognizer)->()
 
 
 class NCScreenEdgePanGestureRecognizer: UIScreenEdgePanGestureRecognizer {
     var promise = NCGesturePromise<UIScreenEdgePanGestureRecognizer>()
     
-    init(@noescape config:ncEdgePanchHandler={ _ in }){
+    init(config:ncEdgePanchHandler={ _ in }){
         super.init(target: promise, action: #selector(NCGesturePromise.gesureRecognizerHandler(_:)))
-        config(gestureRecognizer: self)
+        config(self)
     }
 }

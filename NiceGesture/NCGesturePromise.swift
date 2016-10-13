@@ -9,9 +9,9 @@
 import UIKit
 
 
-public class NCGesturePromise<T:UIGestureRecognizer>: NSObject {
+open class NCGesturePromise<T:UIGestureRecognizer>: NSObject {
     
-    public typealias ncGestureHandler = (gestureRecognizer:T)->Void
+    public typealias ncGestureHandler = (_ gestureRecognizer:T)->Void
 
     var beganHandler:ncGestureHandler = { _ in }
     var cancelledHandler:ncGestureHandler = { _ in }
@@ -24,19 +24,19 @@ public class NCGesturePromise<T:UIGestureRecognizer>: NSObject {
         super.init()
     }
     
-    func gesureRecognizerHandler(gestureRecognizer:UIGestureRecognizer){
+    func gesureRecognizerHandler(_ gestureRecognizer:UIGestureRecognizer){
         switch gestureRecognizer.state {
-        case .Began:
-            beganHandler(gestureRecognizer: gestureRecognizer as! T)
-        case .Cancelled:
-            cancelledHandler(gestureRecognizer: gestureRecognizer as! T)
-        case .Changed:
-            changedHandler(gestureRecognizer: gestureRecognizer as! T)
-        case .Ended:
-            endedHandler(gestureRecognizer: gestureRecognizer as! T)
-        case .Failed:
-            failedHandler(gestureRecognizer: gestureRecognizer as! T)
-        case .Possible:
+        case .began:
+            beganHandler(gestureRecognizer as! T)
+        case .cancelled:
+            cancelledHandler(gestureRecognizer as! T)
+        case .changed:
+            changedHandler(gestureRecognizer as! T)
+        case .ended:
+            endedHandler(gestureRecognizer as! T)
+        case .failed:
+            failedHandler(gestureRecognizer as! T)
+        case .possible:
             break
         }
     }
@@ -47,47 +47,47 @@ public class NCGesturePromise<T:UIGestureRecognizer>: NSObject {
      - parameter states:  UIGestureRecognizerStates
      
      */
-    public func whenStatesHappend(states:[UIGestureRecognizerState],handler:ncGestureHandler)->NCGesturePromise<T>{
+    open func whenStatesHappend(_ states:[UIGestureRecognizerState],handler:@escaping ncGestureHandler)->NCGesturePromise<T>{
         for state in states{
             switch state {
-            case .Began:
+            case .began:
                 beganHandler=handler
-            case .Cancelled:
+            case .cancelled:
                 cancelledHandler=handler
-            case .Changed:
+            case .changed:
                 changedHandler=handler
-            case .Ended:
+            case .ended:
                 endedHandler=handler
-            case .Failed:
+            case .failed:
                 failedHandler=handler
-            case .Possible:
+            case .possible:
                 break
             }
         }
         return self
     }
     
-    public func whenBegan(handler:ncGestureHandler)->NCGesturePromise<T>{
+    open func whenBegan(_ handler:@escaping ncGestureHandler)->NCGesturePromise<T>{
         beganHandler=handler
         return self
     }
     
-    public func whenCancelled(handler:ncGestureHandler)->NCGesturePromise<T>{
+    open func whenCancelled(_ handler:@escaping ncGestureHandler)->NCGesturePromise<T>{
         cancelledHandler=handler
         return self
     }
     
-    public func whenChanged(handler:ncGestureHandler)->NCGesturePromise<T>{
+    open func whenChanged(_ handler:@escaping ncGestureHandler)->NCGesturePromise<T>{
         changedHandler=handler
         return self
     }
     
-    public func whenEnded(handler:ncGestureHandler)->NCGesturePromise<T>{
+    open func whenEnded(_ handler:@escaping ncGestureHandler)->NCGesturePromise<T>{
         endedHandler=handler
         return self
     }
     
-    public func whenFailed(handler:ncGestureHandler)->NCGesturePromise<T>{
+    open func whenFailed(_ handler:@escaping ncGestureHandler)->NCGesturePromise<T>{
         failedHandler=handler
         return self
     }

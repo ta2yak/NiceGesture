@@ -8,14 +8,14 @@
 
 import UIKit
 
-public typealias ncPinchHandler=(gestureRecognizer:UIPinchGestureRecognizer)->()
+public typealias ncPinchHandler=(_ gestureRecognizer:UIPinchGestureRecognizer)->()
 
 class NCPinchGestureRecognizer: UIPinchGestureRecognizer {
     
     var promise = NCGesturePromise<UIPinchGestureRecognizer>()
     
-    init(@noescape config:ncPinchHandler={ _ in }){
+    init(config:ncPinchHandler={ _ in }){
         super.init(target: promise, action: #selector(NCGesturePromise.gesureRecognizerHandler(_:)))
-        config(gestureRecognizer: self)
+        config(self)
     }
 }

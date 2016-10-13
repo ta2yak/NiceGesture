@@ -8,13 +8,13 @@
 
 import UIKit
 
-public typealias ncSwipeHandler=(gestureRecognizer:UISwipeGestureRecognizer)->()
+public typealias ncSwipeHandler=(_ gestureRecognizer:UISwipeGestureRecognizer)->()
 
 class NCSwipeGestureRecognizer: UISwipeGestureRecognizer {
     var promise = NCGesturePromise<UISwipeGestureRecognizer>()
     
-    init(@noescape config:ncSwipeHandler={ _ in }){
+    init(config:ncSwipeHandler={ _ in }){
         super.init(target: promise, action: #selector(NCGesturePromise.gesureRecognizerHandler(_:)))
-        config(gestureRecognizer: self)
+        config(self)
     }
 }

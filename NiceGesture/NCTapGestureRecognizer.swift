@@ -8,18 +8,18 @@
 
 import UIKit
 
-public typealias ncTapGestrueHandler=(tapGestureRecognizer:UITapGestureRecognizer)->()
+public typealias ncTapGestrueHandler=(_ tapGestureRecognizer:UITapGestureRecognizer)->()
 
 class NCTapGestureRecognizer: UITapGestureRecognizer {
     
     var tapPromise = NCTapPromise()
 
-    init(@noescape config:ncTapGestrueHandler={ _ in }){
+    init(config:ncTapGestrueHandler={ _ in }){
         super.init(target: tapPromise, action: #selector(NCTapPromise.tapGestureRecognizerHandler(_:)) )
-        config(tapGestureRecognizer: self)
+        config(self)
     }
     
-    init(handler:ncTapGestrueHandler){
+    init(handler:@escaping ncTapGestrueHandler){
         super.init(target: tapPromise, action: #selector(NCTapPromise.tapGestureRecognizerHandler(_:)) )
         tapPromise.tapHandler=handler
     }

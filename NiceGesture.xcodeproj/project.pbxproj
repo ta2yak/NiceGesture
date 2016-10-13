@@ -292,6 +292,7 @@
 				TargetAttributes = {
 					3A24C0131CB115DC00D213E0 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 					3A24C0241CB118E700D213E0 = {
 						CreatedOnToolsVersion = 7.2;
@@ -532,6 +533,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -550,6 +552,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhuo.NiceGesture;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
